@@ -11,9 +11,30 @@
 #include <stdint.h>
 
 #define CUSTOM_RCC_BASE		0x40021000
+#define CUSTOM_GPIOA_BASE	0x40010800
 #define CUSTOM_GPIOB_BASE	0x40010C00
+#define CUSTOM_GPIOC_BASE	0x40011000
+#define CUSTOM_SPI1_BASE	0x40013000
+#define CUSTOM_USART1_BASE	0x40013800
+#define CUSTOM_USART2_BASE	0x40004400
+#define CUSTOM_WWDG_BASE	0x40002C00
+#define CUSTOM_IWDG_BASE	0x40003000
+#define CUSTOM_DAC_BASE		0x40007400
+#define CUSTOM_ADC1_BASE	0x40012400
+#define CUSTOM_I2C1_BASE	0x40005400
+#define CUSTOM_I2C2_BASE	0x40005800
+#define CUSTOM_AFIO_BASE	0x40010000
+#define CUSTOM_EXTI_BASE	0x40010400
 
+/* USART1EN, SPI1EN, TIM1EN, ADC2EN, ADC1EN, IOPxEN, AFIOEN */
 #define CUSTOM_RCC_APB2ENR	(*(volatile uint32_t *)(CUSTOM_RCC_BASE + 0x18))
+
+/* DACEN, PWREN, BKPEN,
+ * CAN2EN, CAN1EN,
+ * I2C2EN, I2C1EN,
+ * UART5EN, UART4EN, USART3EN, USART2EN,
+ * SPI3EN, SPI2EN, WWDGEN,
+ * TIM7EN, TIM6EN, TIM5EN, TIM4EN, TIM3EN, TIM2EN */
 #define CUSTOM_RCC_APB1ENR	(*(volatile uint32_t *)(CUSTOM_RCC_BASE + 0x1C))
 
 #define CUSTOM_RCC_APB2ENR_IOPBEN	(1 << 3)
@@ -24,9 +45,26 @@
 #define GPIOB_BSRR	(*(volatile uint32_t *)(CUSTOM_GPIOB_BASE + 0x10))
 #define GPIOB_BRR	(*(volatile uint32_t *)(CUSTOM_GPIOB_BASE + 0x14))
 
-#define CUSTOM_GPIO_CRL_MODE5_0		(0x1UL << (20U)) // (0x1UL = representa SPEED) - (MODE5_0 | MODE5_1) = 0b11 = 50Mhz
-#define CUSTOM_GPIO_CRL_MODE5_1		(0x1UL << (21U)) // (0x1UL << (21)) | (0x2UL << (20U)) //21 (0x1UL = SPEED)
-#define CUSTOM_GPIO_CRL_CNF5		(0x3UL << (22U)) // (0x3UL = MODE_PIN PushPull, OpenDrain, etc..) [SEMPRE EH MELHOR 22U Que eh melhor que 23] sempre prefira menor
+#define Analog_mode	0x0
+#define Floating_input_RESETSTATE 0x1
+#define Input_pull_up_down 0x2
+#define __INPUT_MODE_RESERVED__ 0x3
+
+#define General_purpose_output_push_pull 0x0UL
+#define General_purpose_output_open_drain 0x1UL
+#define Alternate_function_output_push_pull 0x2UL
+#define Alternate_function_output_open_drain 0x3UL
+
+#define Input_mode_RESETSTATE	0x0UL
+#define Output_mode_10MHz	0x1UL
+#define Output_mode_2MHz	0x2UL
+#define Output_mode_50MHz	0x3UL
+
+#define CUSTOM_GPIO_CRL_MODE5_0		(Output_mode_10MHz << (20U)) // (0x1UL = representa SPEED) - (MODE5_0 | MODE5_1) = 0b11 = 50Mhz
+#define CUSTOM_GPIO_CRL_MODE5_1		(Output_mode_10MHz << (21U)) // (0x1UL << (21)) | (0x2UL << (20U)) //21 (0x1UL = SPEED)
+#define CUSTOM_GPIO_CRL_CNF5		(Alternate_function_output_open_drain << (22U)) // (0x3UL = MODE_PIN [PushPull, OpenDrain, etc..]) [SEMPRE É MELHOR (22U), pois é menor que (23U)] sempre prefira menor
 #define CUSTOM_GPIO_ODR_ODR5		(0x1UL << (5U)) // ENABLE
+
+
 
 #endif /* INC_SERIALIZE_H_ */

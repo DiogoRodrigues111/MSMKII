@@ -89,7 +89,7 @@ int main(void)
   /* Initialize all configured peripherals */
   /* USER CODE BEGIN 2 */
 
-  GPIO_CustomInit();
+
 
   /* USER CODE END 2 */
 
@@ -97,7 +97,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  GPIO_CustomToggleBlink();
+
 
     /* USER CODE END WHILE */
 
