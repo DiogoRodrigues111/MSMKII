@@ -79,18 +79,23 @@
 
 /* GPIO Pin */
 
+#define CUSTOM_GPIO_CRL_MODE4_0		(Output_mode_10MHz << (16U)) // (0x1UL = representa SPEED) - (MODE5_0 | MODE5_1) = 0b11 = 50Mhz
+#define CUSTOM_GPIO_CRL_MODE4_1		(Output_mode_10MHz << (17U))
+#define CUSTOM_GPIO_CRL_CNF4		(Alternate_function_output_open_drain << (18U)) // (0x3UL = MODE_PIN [PushPull, OpenDrain, etc..]) [SEMPRE É MELHOR (22U), pois é menor que (23U)] sempre prefira menor
+#define CUSTOM_GPIO_ODR_ODR4		(0x1UL << (4U)) 			// ENABLE
+
 #define CUSTOM_GPIO_CRL_MODE5_0		(Output_mode_10MHz << (20U)) // (0x1UL = representa SPEED) - (MODE5_0 | MODE5_1) = 0b11 = 50Mhz
 #define CUSTOM_GPIO_CRL_MODE5_1		(Output_mode_10MHz << (21U)) // (0x1UL << (21)) | (0x2UL << (20U)) //21 (0x1UL = SPEED)
 #define CUSTOM_GPIO_CRL_CNF5		(Alternate_function_output_open_drain << (22U)) // (0x3UL = MODE_PIN [PushPull, OpenDrain, etc..]) [SEMPRE É MELHOR (22U), pois é menor que (23U)] sempre prefira menor
 #define CUSTOM_GPIO_ODR_ODR5		(0x1UL << (5U)) 			// ENABLE
 
 #define CUSTOM_GPIO_CRL_MODE6_0		(Output_mode_10MHz << (24U)) // (0x1UL = representa SPEED) - (MODE5_0 | MODE5_1) = 0b11 = 50Mhz
-#define CUSTOM_GPIO_CRL_MODE6_1		(Output_mode_10MHz << (25U)) // (0x1UL << (21)) | (0x2UL << (20U)) //21 (0x1UL = SPEED)
+#define CUSTOM_GPIO_CRL_MODE6_1		(Output_mode_10MHz << (25U))
 #define CUSTOM_GPIO_CRL_CNF6		(Alternate_function_output_open_drain << (26U)) // (0x3UL = MODE_PIN [PushPull, OpenDrain, etc..]) [SEMPRE É MELHOR (22U), pois é menor que (23U)] sempre prefira menor
 #define CUSTOM_GPIO_ODR_ODR6		(0x1UL << (6U)) 			// ENABLE
 
 #define CUSTOM_GPIO_CRL_MODE7_0		(Output_mode_10MHz << (28U)) // (0x1UL = representa SPEED) - (MODE5_0 | MODE5_1) = 0b11 = 50Mhz
-#define CUSTOM_GPIO_CRL_MODE7_1		(Output_mode_10MHz << (29U)) // (0x1UL << (21)) | (0x2UL << (20U)) //21 (0x1UL = SPEED)
+#define CUSTOM_GPIO_CRL_MODE7_1		(Output_mode_10MHz << (29U))
 #define CUSTOM_GPIO_CRL_CNF7		(Alternate_function_output_open_drain << (30U)) // (0x3UL = MODE_PIN [PushPull, OpenDrain, etc..]) [SEMPRE É MELHOR (22U), pois é menor que (23U)] sempre prefira menor
 #define CUSTOM_GPIO_ODR_ODR7		(0x1UL << (7U)) 			// ENABLE
 
